@@ -1,6 +1,7 @@
 "use client"
 import { useAppSelector } from '@/redux/hooks'
 import { createRoom, initSocket } from '@/socket'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -14,26 +15,28 @@ const Page = () => {
     const inputRef = useRef<HTMLInputElement>(null);
 
   
-    useEffect(()=>{
-        if(roomId.length>0){
-            router.replace(`/${roomId}?mode=create`)
-        }
-    },[roomId])
+    // useEffect(()=>{
+    //     if(roomId.length>0){
+    //         router.replace(`/${roomId}?mode=create`)
+    //     }
+    // },[roomId])
 
-    const [creating,setCreating] = useState(false);
-    useEffect(()=>{
-        initSocket();
-    },[])
+    // const [creating,setCreating] = useState(false);
+    // useEffect(()=>{
+    //     initSocket();
+    // },[])
 
 
 
  
   return (
     <div>
-     {creating? <h1>Creating</h1> : <button onClick={()=>{
+     {/* {creating? <h1>Creating</h1> : <button onClick={()=>{
         
         createRoom();
-     }}>Create Room</button> }<br />
+     }}>Create Room</button> }<br /> */}
+
+     <Link  href={`createMetting?mode=create`}>Create metting</Link>
 
 
       <input ref={inputRef} type="text" placeholder='Join room'/>

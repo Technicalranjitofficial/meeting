@@ -2,22 +2,30 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { setMyVideoStream } from '@/redux/reducers/connectionReducer'
 import { store } from '@/redux/store'
+import { createRoom, initSocket } from '@/socket'
 import React, { useEffect, useRef } from 'react'
 import ReactPlayer from 'react-player'
 
-const CreateMode = ({roomId}:{roomId:string}) => {
+const CreateMode = ({roomIds}:{roomIds:string}) => {
 
     const myStream = useAppSelector((state)=>state.ConnectionReducer.myVideoStream);
     const myVidRef = useRef<HTMLVideoElement>(null);
 
     const userVideo = useAppSelector((state)=>state.ConnectionReducer.usersVideoStreams);
     const dispatch = useAppDispatch();
+    const roomId = useAppSelector((state)=>state.ConnectionReducer.room);
+
     useEffect(()=>{
+
+    },[])
+    useEffect(()=>{
+      initSocket();
         navigator.mediaDevices.getUserMedia({
             audio:true,
             video:true
         }).then((stream)=>{
             dispatch(setMyVideoStream(stream));
+            createRoom();
            if(myVidRef.current){
             myVidRef.current.srcObject = stream;
            }
@@ -25,7 +33,7 @@ const CreateMode = ({roomId}:{roomId:string}) => {
     },[])
   return (
     <div>
-     {<video src='' autoPlay ref = {myVidRef} playsInline></video>}
+     {myStream && <ReactPlayer muted playing url={myStream} />}
 
      <button onClick={()=>{
         console.log(myStream);
@@ -47,6 +55,13 @@ const CreateMode = ({roomId}:{roomId:string}) => {
       height="10%"
     />
      })}
+
+
+     <button onClick={()=>{
+      navigator.clipboard.writeText(roomId);
+     }}>copy id</button>
+
+     roomId : {roomId}
      
     </div>
 

@@ -28,7 +28,7 @@ return        <>
     }else{
         console.log("create")
         return <>
-        <CreateMode roomId={props.params.room} />
+        <CreateMode roomIds={props.params.room} />
         </>
     }
 

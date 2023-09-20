@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { setMyVideoStream } from '@/redux/reducers/connectionReducer'
 import { store } from '@/redux/store'
-import { connectionReadyState } from '@/socket'
+import { connectionReadyState, initSocket } from '@/socket'
 import React, { useEffect, useRef } from 'react'
 import ReactPlayer from 'react-player'
 
@@ -13,6 +13,7 @@ const RoomJoin = ({roomId}:{roomId:string}) => {
     const myVidRef = useRef<HTMLVideoElement>(null);
     const dispatch = useAppDispatch();
     useEffect(()=>{
+      initSocket();
         navigator.mediaDevices.getUserMedia({
             audio:true,
             video:true
@@ -28,7 +29,9 @@ const RoomJoin = ({roomId}:{roomId:string}) => {
     },[])
   return (
     <div>
-     {<video src='' autoPlay ref = {myVidRef} playsInline></video>}
+     {/* {<video src='' autoPlay  ref = {myVidRef} playsInline></video>} */}
+
+     {myStream && <ReactPlayer muted playing url={myStream} />}
 
      <button onClick={()=>{
         console.log(myStream);
