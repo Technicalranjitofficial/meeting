@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 
 
-const page = () => {
+const Page = () => {
 
     const roomId = useAppSelector((state)=>state.ConnectionReducer.room);
     const router = useRouter();
@@ -50,4 +50,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
