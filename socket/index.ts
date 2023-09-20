@@ -49,13 +49,18 @@ export const initSocket=()=>{
 
         peers[user.userId] = new Peer({
           initiator:true,
-          // config:{
-          //   iceServers:[
-          //     {
-          //       urls:"stun:stun.1.google.com:19302"
-          //     }
-          //   ]
-          // },
+          config:{
+            iceServers:[
+              {
+                urls:"stun:stun.1.google.com:19302"
+              },
+              { urls: 'stun:stun.l.google.com:19302' },
+              { urls: 'stun:stun1.l.google.com:19302' },
+              { urls: 'stun:stun2.l.google.com:19302' },
+              { urls: 'stun:stun3.l.google.com:19302' },
+              { urls: 'stun:stun4.l.google.com:19302' },
+            ]
+          },
           trickle:false,
           stream:store.getState().ConnectionReducer.myVideoStream!
         });
@@ -105,13 +110,18 @@ const createConnection = (senderSocketId:string,signal:any)=>{
   
         peers[senderSocketId] = new Peer({
           initiator:false,
-          // config:{
-          //   iceServers:[
-          //     {
-          //       urls:"stun:stun.1.google.com:19302"
-          //     }
-          //   ]
-          // },
+          config:{
+            iceServers:[
+              {
+                urls:"stun:stun.1.google.com:19302"
+              },
+              { urls: 'stun:stun.l.google.com:19302' },
+              { urls: 'stun:stun1.l.google.com:19302' },
+              { urls: 'stun:stun2.l.google.com:19302' },
+              { urls: 'stun:stun3.l.google.com:19302' },
+              { urls: 'stun:stun4.l.google.com:19302' },
+            ]
+          },
           trickle:false,
           stream:store.getState().ConnectionReducer.myVideoStream!
         });
