@@ -51,11 +51,9 @@ export const initSocket=()=>{
           initiator:true,
           config:{
             iceServers:[
-              { urls: 'stun:stun.l.google.com:19302' },
-    { urls: 'stun:stun1.l.google.com:19302' },
-    { urls: 'stun:stun2.l.google.com:19302' },
-    { urls: 'stun:stun3.l.google.com:19302' },
-    { urls: 'stun:stun4.l.google.com:19302' },
+              {
+                urls:"stun:stun.1.google.com:19302"
+              }
             ]
           },
           trickle:false,
@@ -109,11 +107,9 @@ const createConnection = (senderSocketId:string,signal:any)=>{
           initiator:false,
           config:{
             iceServers:[
-              { urls: 'stun:stun.l.google.com:19302' },
-              { urls: 'stun:stun1.l.google.com:19302' },
-              { urls: 'stun:stun2.l.google.com:19302' },
-              { urls: 'stun:stun3.l.google.com:19302' },
-              { urls: 'stun:stun4.l.google.com:19302' },
+              {
+                urls:"stun:stun.1.google.com:19302"
+              }
             ]
           },
           trickle:false,
