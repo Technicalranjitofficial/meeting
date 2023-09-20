@@ -92,7 +92,7 @@ const CreateMode = ({roomIds}:{roomIds:string}) => {
         <BsCameraVideoOff onClick={toggleVideo}  size="23" />
       </div>
       <div className='h-10 flex items-center w-10 justify-center rounded-full bg-slate-600'>
-        <MdOutlineScreenShare onClick={()=>navigator.clipboard.writeText(`http://localhost:3000/${roomId}?mode=join`)} size="25" />
+        <MdOutlineScreenShare onClick={()=>navigator.clipboard.writeText(`https://kiitmeeting.vercel.app/${roomId}?mode=join`)} size="25" />
       </div>
     </div>
 
