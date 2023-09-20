@@ -1,4 +1,4 @@
-import { deleteUserVideoStream, setPeerConnection, setRoom, setUserVideoStream } from "@/redux/reducers/connectionReducer";
+import { deleteUserVideoStream, setIsUserJoined, setPeerConnection, setRoom, setUserVideoStream } from "@/redux/reducers/connectionReducer";
 import { store } from "@/redux/store";
 import {io} from "socket.io-client";
 
@@ -40,6 +40,7 @@ export const initSocket=()=>{
     socket.on("finalConnection",(data:any)=>{
       console.log(data);
       peers[data.from].signal(data.signal);
+      store.dispatch(setIsUserJoined(true));
     })
 
     socket.on("allUsers",(data:{userId:string}[])=>{

@@ -6,6 +6,7 @@ interface InitialState {
   myVideoStream: MediaStream | null;
   peers: Record<string, any>;
   room: string;
+  isRoomJoined:boolean,
   usersVideoStreams: Record<string, MediaStream>;
 }
 
@@ -14,6 +15,7 @@ const initialState: InitialState = {
   myVideoStream: null,
   peers: {},
   room: "",
+  isRoomJoined:false,
   
   usersVideoStreams: {},
 
@@ -55,10 +57,13 @@ const connectionSlice = createSlice({
     const peer = state.peers;
     delete peer[socketId];
     state.peers = peer;
+    },
+    setIsUserJoined:(state,action)=>{
+      state.isRoomJoined = action.payload;
     }
   },
 });
 
-export const { setMySocketId, setPeerConnection, setMyVideoStream, setUserVideoStream ,setRoom,deleteUserVideoStream} = connectionSlice.actions;
+export const { setMySocketId, setPeerConnection, setMyVideoStream, setUserVideoStream ,setRoom,deleteUserVideoStream,setIsUserJoined} = connectionSlice.actions;
 
 export default connectionSlice.reducer;
