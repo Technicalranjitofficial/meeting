@@ -75,7 +75,7 @@ const RoomJoin = ({roomId}:{roomId:string}) => {
       </div>}
 
       <div className='w-full h-[90%] p-5   bg-slate-800'>
-      <div className={`w-full gap-5 p-2  overflow-y-auto  ${Object.keys(userVideo).length==0?"grid-cols-1":Object.keys(userVideo).length==1?" sm:grid-cols-1 md:grid-cols-2": Object.keys(userVideo).length<=4?"md:grid-cols-2 sm:grid-cols-1":"lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"}   h-full grid rounded-lg bg-slate-700`}>
+      <div className={`w-full gap-5 p-2  overflow-y-auto  ${Object.keys(userVideo).length==0?"grid-cols-1":Object.keys(userVideo).length==1?" grid-cols-1 lg:grid-cols-2": Object.keys(userVideo).length<=4?"md:grid-cols-2 sm:grid-cols-1":"lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"}   h-full grid rounded-lg bg-slate-700`}>
         <Card isMe stream={myStream} color={colorNames[getRandomColorIndex()]}/>
          {Object.keys(userVideo).map((key)=>{
           return  <Card key={key} isMe={false} stream={userVideo[key]} color={colorNames[getRandomColorIndex()]}/>
